@@ -16,6 +16,11 @@ public class RoomRepositoryImpl {
 
     private MongoTemplate mongoTemplate;
 
+    @Autowired
+    public RoomRepositoryImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
+
     public Room findById(int id){
         return repository.findById(id).get();
     }

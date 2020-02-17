@@ -1,9 +1,7 @@
 package com.dnascto.ionic.practicing;
 
-import com.dnascto.ionic.practicing.dao.BookingRepository;
-import com.dnascto.ionic.practicing.dao.RoomRepository;
-import com.dnascto.ionic.practicing.dao.UserRepository;
-import com.dnascto.ionic.practicing.dao.UserRepositoryImpl;
+import com.dnascto.ionic.practicing.dao.*;
+import com.dnascto.ionic.practicing.model.Room;
 import com.dnascto.ionic.practicing.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
@@ -17,10 +15,10 @@ import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 public class Application implements CommandLineRunner {
 
     @Autowired
-    UserRepository repository;
+    RoomRepository repository;
 
     @Autowired
-    UserRepositoryImpl userRepositoryMain;
+    RoomRepositoryImpl roomRepository;
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -31,10 +29,13 @@ public class Application implements CommandLineRunner {
         deleteAll();
         addSampleData();
         listAll();
-        userRepositoryMain.editUser(new User(1, "Juan Martinez", "j", "09876543211", "j", 3, false));
-        listAll();
-        System.out.println("Find by Id: " + userRepositoryMain.findById(1));
-        System.out.println("Login: " + userRepositoryMain.login("09876543211", "j"));
+        roomRepository.updateRoom(new Room(1, "Sala Grande", 44, true, false));
+        roomRepository.getAllRoom();
+        System.out.println("Find by Id: " + roomRepository.findById(1));
+        System.out.println("Count booking: " + roomRepository.getCountBookedRoom(true));
+        System.out.println("Count free   : " + roomRepository.getCountBookedRoom(false));
+        System.out.println("Bookings false: " + roomRepository.getAllRoomsByBooked(false));
+        System.out.println("Bookings true: " + roomRepository.getAllRoomsByBooked(true));
     }
 
     public void deleteAll() {
@@ -44,9 +45,8 @@ public class Application implements CommandLineRunner {
 
     public void addSampleData() {
         System.out.println("Adding sample data");
-        userRepositoryMain.createUser(new User(1, "Daniel Rodrigues", "d", "09876543211", "d", 4, false));
-        repository.save(new User(3, "Eduardo Nascimento", "a", "09876543212", "a", 1, true));
-
+        roomRepository.addRoom(new Room(1, "Sala Pequena", 10, false, false));
+        repository.save(new Room(4, "Sala Media", 25, true, false));
     }
 
     public void listAll() {
