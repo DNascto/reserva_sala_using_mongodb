@@ -1,5 +1,6 @@
 package com.dnascto.ionic.practicing.controller;
 
+import com.dnascto.ionic.practicing.dto.DtoLogin;
 import com.dnascto.ionic.practicing.model.User;
 import com.dnascto.ionic.practicing.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,12 +22,13 @@ public class UserController {
         this.userService = userService;
     }
 
-//    public ResponseEntity<User> getLogin(@RequestBody DtoLogin dtoLogin){
-//        if(userService.login(dtoLogin.getLogin(), dtoLogin.getPassword()) == null) {
-//            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-//        }
-//        return ResponseEntity.ok(userService.login(dtoLogin.getLogin(), dtoLogin.getPassword()));
-//    }
+    @PostMapping("/login")
+    public ResponseEntity<User> getLogin(@RequestBody DtoLogin dtoLogin){
+        if(userService.login(dtoLogin.getLogin(), dtoLogin.getPassword()) == null) {
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        return ResponseEntity.ok(userService.login(dtoLogin.getLogin(), dtoLogin.getPassword()));
+    }
 
     @GetMapping("/byId")
     public ResponseEntity<User> getUserById(@RequestParam int id){
