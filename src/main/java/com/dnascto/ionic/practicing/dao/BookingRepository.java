@@ -12,8 +12,8 @@ import java.util.List;
 @Repository
 public interface BookingRepository extends MongoRepository<Booking, Integer> {
 //    @Query("SELECT b FROM Booking b WHERE b.approved = :app and b.date >= :day")
-    @Query("{approved: app}")
-    List<Booking> findByApproved(@Param("app") Boolean approved, @Param("day") LocalDateTime day);
+//    @Query("{approved: app}")
+//    List<Booking> findByApproved(@Param("app") Boolean approved, @Param("day") LocalDateTime day);
 
 //    @Query("SELECT b FROM Booking b WHERE b.author = :name")
     @Query("{author: 'name'}")

@@ -1,6 +1,7 @@
 package com.dnascto.ionic.practicing;
 
 import com.dnascto.ionic.practicing.dao.*;
+import com.dnascto.ionic.practicing.model.Booking;
 import com.dnascto.ionic.practicing.model.Room;
 import com.dnascto.ionic.practicing.model.User;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -10,15 +11,22 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
 import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
 
+import java.time.LocalDateTime;
+import java.util.Arrays;
+import java.util.List;
+
 //@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @SpringBootApplication
 public class Application implements CommandLineRunner {
 
     @Autowired
-    RoomRepository repository;
+    BookingRepository repository;
 
     @Autowired
-    RoomRepositoryImpl roomRepository;
+    BookingRepositoryImpl bookingRepository;
+
+    List<Room> roomList = Arrays.asList(new Room[]{new Room(1, "Sala Pequena", 10, false, false),
+            new Room(4, "Sala Media", 25, true, false)});
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -29,13 +37,12 @@ public class Application implements CommandLineRunner {
         deleteAll();
         addSampleData();
         listAll();
-        roomRepository.updateRoom(new Room(1, "Sala Grande", 44, true, false));
-        roomRepository.getAllRoom();
-        System.out.println("Find by Id: " + roomRepository.findById(1));
-        System.out.println("Count booking: " + roomRepository.getCountBookedRoom(true));
-        System.out.println("Count free   : " + roomRepository.getCountBookedRoom(false));
-        System.out.println("Bookings false: " + roomRepository.getAllRoomsByBooked(false));
-        System.out.println("Bookings true: " + roomRepository.getAllRoomsByBooked(true));
+        bookingRepository.updateBooking(new Booking(1, LocalDateTime.now(), roomList.get(1), 180, "Bill Jobs", true));
+        bookingRepository.getAllBookings();
+        System.out.println("Find by Id: " + bookingRepository.findById(1));
+        System.out.println("find buy name: " + bookingRepository.findByAuthor("Bill Jobs"));
+        System.out.println("Bookings false: " + bookingRepository.findByApprove(false));
+        System.out.println("Bookings true: " + bookingRepository.findByApprove(true));
     }
 
     public void deleteAll() {
@@ -45,8 +52,8 @@ public class Application implements CommandLineRunner {
 
     public void addSampleData() {
         System.out.println("Adding sample data");
-        roomRepository.addRoom(new Room(1, "Sala Pequena", 10, false, false));
-        repository.save(new Room(4, "Sala Media", 25, true, false));
+        bookingRepository.addBooking(new Booking(1, LocalDateTime.now(), roomList.get(0), 60, "Linux Mouse", false));
+        repository.save(new Booking(3, LocalDateTime.now(), roomList.get(1), 60, "Mark Gates", false));
     }
 
     public void listAll() {

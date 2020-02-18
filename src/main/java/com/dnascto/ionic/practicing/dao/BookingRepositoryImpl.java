@@ -2,6 +2,9 @@ package com.dnascto.ionic.practicing.dao;
 
 import com.dnascto.ionic.practicing.model.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.mongodb.core.MongoTemplate;
+import org.springframework.data.mongodb.core.query.Criteria;
+import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
 import java.time.LocalDateTime;
@@ -12,9 +15,15 @@ public class BookingRepositoryImpl {
     @Autowired
     private BookingRepository repository;
 
+    private MongoTemplate mongoTemplate;
+
+    @Autowired
+    public BookingRepositoryImpl(MongoTemplate mongoTemplate) {
+        this.mongoTemplate = mongoTemplate;
+    }
+
     public Booking findById(int id){
         return repository.findById(id).get();
-//        return bookingRepository.getOne(String.valueOf(id));
     }
 
     public List<Booking> getAllBookings(){
@@ -22,11 +31,13 @@ public class BookingRepositoryImpl {
     }
 
     public List<Booking> findByApprove(Boolean approved){
-        return repository.findByApproved(approved, LocalDateTime.now());
+        Query query = new Query(Criteria.where("approved").is(approved).and("date").gte( LocalDateTime.now().minusHours(1)));
+        return mongoTemplate.find(query, Booking.class);
     }
 
     public List<Booking> findByAuthor(String authorName){
-        return repository.findByAuthor(authorName);
+        Query query = new Query(Criteria.where("author").is(authorName));
+        return mongoTemplate.find(query, Booking.class);
     }
 
     public Booking addBooking(Booking booking){
