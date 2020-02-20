@@ -22,7 +22,7 @@ public class UserController {
         this.userService = userService;
     }
 
-    @PostMapping("/login")
+    @PostMapping("/authenticate")
     public ResponseEntity<User> getLogin(@RequestBody DtoLogin dtoLogin){
         if(userService.login(dtoLogin.getLogin(), dtoLogin.getPassword()) == null) {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();

@@ -34,15 +34,9 @@ public class Application implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        deleteAll();
-        addSampleData();
-        listAll();
-        bookingRepository.updateBooking(new Booking(1, LocalDateTime.now(), roomList.get(1), 180, "Bill Jobs", true));
-        bookingRepository.getAllBookings();
-        System.out.println("Find by Id: " + bookingRepository.findById(1));
-        System.out.println("find buy name: " + bookingRepository.findByAuthor("Bill Jobs"));
-        System.out.println("Bookings false: " + bookingRepository.findByApprove(false));
-        System.out.println("Bookings true: " + bookingRepository.findByApprove(true));
+//        deleteAll();
+//        addSampleData();
+//        listAll();
     }
 
     public void deleteAll() {
