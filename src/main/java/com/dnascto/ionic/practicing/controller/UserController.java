@@ -12,8 +12,7 @@ import org.springframework.web.bind.annotation.*;
 
 @Controller
 @RequestMapping("/user")
-// @CrossOrigin(origins = "http://localhost:8100")
-@CrossOrigin(origins = "https://dry-journey-31622.herokuapp.com")
+@CrossOrigin(origins = "http://localhost:8100")
 public class UserController {
     private UserService userService;
 //    private BCryptPasswordEncoder bCryptPasswordEncoder;
