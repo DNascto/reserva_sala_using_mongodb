@@ -23,5 +23,5 @@ public class Users {
     private String company;
     private Integer accessLevel; //gerencia, comum, presidente, admin
     private Boolean immediatlyApprovation;
-    private Set<Permission> permissions;
+    //private Set<Permission> permissions;
 }
