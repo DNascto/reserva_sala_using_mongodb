@@ -1,11 +1,11 @@
 package com.dnascto.ionic.practicing.service;
 
-import com.dnascto.ionic.practicing.dao.RoomRepositoryImpl;
 import com.dnascto.ionic.practicing.model.Room;
+import com.dnascto.ionic.practicing.repository.RoomRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Service;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Component
@@ -13,7 +13,7 @@ public class RoomService {
     @Autowired
     private RoomRepositoryImpl roomRepositoryImpl;
 
-    public Room getRoom(int id){
+    public Room getRoom(BigInteger id){
         return roomRepositoryImpl.findById(id);
     }
 

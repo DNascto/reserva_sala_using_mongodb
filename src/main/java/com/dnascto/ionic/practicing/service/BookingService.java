@@ -1,10 +1,11 @@
 package com.dnascto.ionic.practicing.service;
 
-import com.dnascto.ionic.practicing.dao.BookingRepositoryImpl;
 import com.dnascto.ionic.practicing.model.Booking;
+import com.dnascto.ionic.practicing.repository.BookingRepositoryImpl;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -19,7 +20,7 @@ public class BookingService {
         this.roomService = roomService;
     }
 
-    public Booking findById(int id){
+    public Booking findById(BigInteger id){
         return bookingRepository.findById(id);
     }
 

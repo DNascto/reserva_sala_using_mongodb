@@ -1,4 +1,4 @@
-package com.dnascto.ionic.practicing.dao;
+package com.dnascto.ionic.practicing.repository;
 
 import com.dnascto.ionic.practicing.model.Room;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @Component
@@ -21,7 +22,7 @@ public class RoomRepositoryImpl {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public Room findById(int id){
+    public Room findById(BigInteger id){
         return repository.findById(id).get();
     }
 

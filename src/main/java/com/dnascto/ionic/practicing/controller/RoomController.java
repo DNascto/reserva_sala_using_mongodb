@@ -6,10 +6,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:8100")
+//@CrossOrigin(origins = {"https://dry-journey-31622.herokuapp.com", "http://localhost:8100"})
 public class RoomController {
     @Autowired
     private RoomService service;
@@ -21,7 +22,7 @@ public class RoomController {
     }
 
     @GetMapping("/room")
-    public Room getRoom(@RequestParam int id){
+    public Room getRoom(@RequestParam BigInteger id){
         return service.getRoom(id);
     }
 

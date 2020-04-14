@@ -5,11 +5,13 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.math.BigInteger;
+
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class DtoBooking {
-    private Integer id;
+    private BigInteger id;
     private String date;
     private Room room;
     private Integer period;

@@ -1,19 +1,10 @@
 package com.dnascto.ionic.practicing;
 
-import com.dnascto.ionic.practicing.dao.*;
-import com.dnascto.ionic.practicing.model.Booking;
-import com.dnascto.ionic.practicing.model.Room;
-import com.dnascto.ionic.practicing.model.User;
+import com.dnascto.ionic.practicing.repository.BookingRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
-import org.springframework.boot.autoconfigure.data.mongo.MongoDataAutoConfiguration;
-import org.springframework.boot.autoconfigure.mongo.MongoAutoConfiguration;
-
-import java.time.LocalDateTime;
-import java.util.Arrays;
-import java.util.List;
 
 //@SpringBootApplication(exclude = {MongoAutoConfiguration.class, MongoDataAutoConfiguration.class})
 @SpringBootApplication
@@ -22,11 +13,11 @@ public class Application implements CommandLineRunner {
     @Autowired
     BookingRepository repository;
 
-    @Autowired
-    BookingRepositoryImpl bookingRepository;
+//    @Autowired
+//    BookingRepositoryImpl bookingRepository;
 
-    List<Room> roomList = Arrays.asList(new Room[]{new Room(1, "Sala Pequena", 10, false, false),
-            new Room(4, "Sala Media", 25, true, false)});
+//    List<Room> roomList = Arrays.asList(new Room[]{new Room(1, "Sala Pequena", 10, false, false),
+//            new Room(4, "Sala Media", 25, true, false)});
 
     public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
@@ -44,11 +35,11 @@ public class Application implements CommandLineRunner {
         repository.deleteAll();
     }
 
-    public void addSampleData() {
-        System.out.println("Adding sample data");
-        bookingRepository.addBooking(new Booking(1, LocalDateTime.now(), roomList.get(0), 60, "Linux Mouse", false));
-        repository.save(new Booking(3, LocalDateTime.now(), roomList.get(1), 60, "Mark Gates", false));
-    }
+//    public void addSampleData() {
+//        System.out.println("Adding sample data");
+//        bookingRepository.addBooking(new Booking(1, LocalDateTime.now(), roomList.get(0), 60, "Linux Mouse", false));
+//        repository.save(new Booking(3, LocalDateTime.now(), roomList.get(1), 60, "Mark Gates", false));
+//    }
 
     public void listAll() {
         System.out.println("Listing sample data");

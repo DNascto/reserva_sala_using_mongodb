@@ -1,4 +1,4 @@
-package com.dnascto.ionic.practicing.dao;
+package com.dnascto.ionic.practicing.repository;
 
 import com.dnascto.ionic.practicing.model.Booking;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -7,6 +7,7 @@ import org.springframework.data.mongodb.core.query.Criteria;
 import org.springframework.data.mongodb.core.query.Query;
 import org.springframework.stereotype.Component;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.util.List;
 
@@ -22,7 +23,7 @@ public class BookingRepositoryImpl {
         this.mongoTemplate = mongoTemplate;
     }
 
-    public Booking findById(int id){
+    public Booking findById(BigInteger id){
         return repository.findById(id).get();
     }
 

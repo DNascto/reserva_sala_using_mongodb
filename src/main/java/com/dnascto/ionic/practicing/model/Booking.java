@@ -8,6 +8,7 @@ import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.Id;
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import java.math.BigInteger;
 import java.time.LocalDateTime;
 import java.time.ZonedDateTime;
 import java.time.format.DateTimeFormatter;
@@ -19,7 +20,7 @@ import java.time.format.DateTimeFormatter;
 @Document(collection = "booking")
 public class Booking {
     @Id
-    private Integer id;
+    private BigInteger id;
 
 //    @Column
     private LocalDateTime date;
@@ -30,6 +31,7 @@ public class Booking {
 
     private Integer period;
     private String author;
+    private String company;
     private Boolean approved;
 //    private Boolean active;
 

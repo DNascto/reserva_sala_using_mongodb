@@ -7,10 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.math.BigInteger;
 import java.util.List;
 
 @RestController
-//@CrossOrigin(origins = "http://localhost:8100")
+@CrossOrigin(origins = {"https://dry-journey-31622.herokuapp.com", "http://localhost:8100"})
 public class BookingController {
     private BookingService service;
 
@@ -20,7 +21,7 @@ public class BookingController {
     }
 
     @GetMapping("/booking")
-    public ResponseEntity<Booking> getBooking(@RequestParam int id) {
+    public ResponseEntity<Booking> getBooking(@RequestParam BigInteger id) {
         return ResponseEntity.ok(service.findById(id));
     }
 
