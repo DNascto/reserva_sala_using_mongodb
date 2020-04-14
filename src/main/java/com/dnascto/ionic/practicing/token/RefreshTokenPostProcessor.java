@@ -1,6 +1,6 @@
 package com.dnascto.ionic.practicing.token;
 
-import com.dnascto.ionic.practicing.config.property.VagasApiProperty;
+import com.dnascto.ionic.practicing.config.property.ReservasApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.MethodParameter;
 import org.springframework.http.MediaType;
@@ -22,7 +22,7 @@ import javax.servlet.http.HttpServletResponse;
 public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2AccessToken> {
 
     @Autowired
-    private VagasApiProperty vagasApiProperty;
+    private ReservasApiProperty reservasApiProperty;
 
     @Override
     public boolean supports(MethodParameter returnType, Class<? extends HttpMessageConverter<?>> converterType) {
@@ -48,7 +48,7 @@ public class RefreshTokenPostProcessor implements ResponseBodyAdvice<OAuth2Acces
         Cookie refreshTokenCookie = new Cookie("refreshToken", refreshToken);
 
         refreshTokenCookie.setHttpOnly(true);
-        refreshTokenCookie.setSecure(vagasApiProperty.getSecurity().isEnableHttps());
+        refreshTokenCookie.setSecure(reservasApiProperty.getSecurity().isEnableHttps());
         refreshTokenCookie.setPath(req.getContextPath() + "/oauth/token");
         refreshTokenCookie.setMaxAge(2592000);
 

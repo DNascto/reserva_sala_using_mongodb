@@ -41,7 +41,6 @@ public class UserController {
 
     @PostMapping("/new")
     public ResponseEntity<Users> createUser(@RequestBody Users users){
-//        user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
         return ResponseEntity.ok(userService.createUser(users));
     }
 
@@ -58,5 +57,4 @@ public class UserController {
             return ResponseEntity.status(HttpStatus.NOT_MODIFIED).build();
         }
     }
-
 }

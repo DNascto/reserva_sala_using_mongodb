@@ -1,6 +1,6 @@
 package com.dnascto.ionic.practicing.controller;
 
-import com.dnascto.ionic.practicing.config.property.VagasApiProperty;
+import com.dnascto.ionic.practicing.config.property.ReservasApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -16,13 +16,13 @@ import javax.servlet.http.HttpServletResponse;
 public class TokenController {
 
     @Autowired
-    private VagasApiProperty vagasApiProperty;
+    private ReservasApiProperty reservasApiProperty;
 
     @DeleteMapping("/revoke")
     public void revoke(HttpServletRequest request, HttpServletResponse response) {
         Cookie cookie = new Cookie("refreshToken", null);
         cookie.setHttpOnly(true);
-        cookie.setSecure(vagasApiProperty.getSecurity().isEnableHttps());
+        cookie.setSecure(reservasApiProperty.getSecurity().isEnableHttps());
         cookie.setPath(request.getContextPath() + "/oauth/token");
         cookie.setMaxAge(0);
 

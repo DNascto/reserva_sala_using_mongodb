@@ -1,6 +1,6 @@
 package com.dnascto.ionic.practicing.cors;
 
-import com.dnascto.ionic.practicing.config.property.VagasApiProperty;
+import com.dnascto.ionic.practicing.config.property.ReservasApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.Ordered;
 import org.springframework.core.annotation.Order;
@@ -16,17 +16,17 @@ import java.io.IOException;
 public class CorsFilter implements Filter {
 
     @Autowired
-    private VagasApiProperty vagasApiProperty;
+    private ReservasApiProperty reservasApiProperty;
 
     @Override
     public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain) throws IOException, ServletException {
         HttpServletRequest req = (HttpServletRequest) request;
         HttpServletResponse resp = (HttpServletResponse) response;
 
-        resp.setHeader("Access-Control-Allow-Origin", vagasApiProperty.getAllowedOrigin());
+        resp.setHeader("Access-Control-Allow-Origin", reservasApiProperty.getAllowedOrigin());
         resp.setHeader("Access-Control-Allow-Credentials", "true");
 
-        if("OPTIONS".equals(req.getMethod()) && vagasApiProperty.getAllowedOrigin().equals(req.getHeader("Origin"))) {
+        if("OPTIONS".equals(req.getMethod()) && reservasApiProperty.getAllowedOrigin().equals(req.getHeader("Origin"))) {
             resp.setHeader("Access-Control-Allow-Methods", "POST, GET, PUT, PATCH, DELETE, OPTIONS");
             resp.setHeader("Access-Control-Allow-Headers", "Authorization, Content-Type, Accept");
             resp.setHeader("Access-Control-Max-Age", "3600");

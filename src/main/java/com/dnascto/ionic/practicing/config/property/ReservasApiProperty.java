@@ -8,7 +8,7 @@ import org.springframework.stereotype.Component;
 @Getter
 @Component
 @ConfigurationProperties("reservas")
-public class VagasApiProperty {
+public class ReservasApiProperty {
 
     private String allowedOrigin = "http://localhost:8100";
 //    private String allowedOrigin = new String[]{"https://dry-journey-31622.herokuapp.com", "http://localhost:8100"};

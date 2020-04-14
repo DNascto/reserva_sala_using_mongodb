@@ -1,6 +1,6 @@
 package com.dnascto.ionic.practicing.config;
 
-import com.dnascto.ionic.practicing.config.property.VagasApiProperty;
+import com.dnascto.ionic.practicing.config.property.ReservasApiProperty;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
@@ -13,7 +13,7 @@ import java.util.Properties;
 public class MailConfig {
 
     @Autowired
-    private VagasApiProperty vagasApiProperty;
+    private ReservasApiProperty reservasApiProperty;
 
     @Bean
     public JavaMailSender javaMailSender() {
@@ -25,10 +25,10 @@ public class MailConfig {
 
         JavaMailSenderImpl mailSender = new JavaMailSenderImpl();
         mailSender.setJavaMailProperties(properties);
-        mailSender.setHost(vagasApiProperty.getMail().getHost());
-        mailSender.setPort(vagasApiProperty.getMail().getPort());
-        mailSender.setUsername(vagasApiProperty.getMail().getUsername());
-        mailSender.setPassword(vagasApiProperty.getMail().getPassword());
+        mailSender.setHost(reservasApiProperty.getMail().getHost());
+        mailSender.setPort(reservasApiProperty.getMail().getPort());
+        mailSender.setUsername(reservasApiProperty.getMail().getUsername());
+        mailSender.setPassword(reservasApiProperty.getMail().getPassword());
 
         return mailSender;
     }
