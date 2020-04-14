@@ -32,10 +32,11 @@ public class AppUserDetailsService implements UserDetailsService {
         return new UserSystem(users, new HashSet<>());
     }
 
-    private Collection<? extends GrantedAuthority> getPermissions(Users users) {
+/*    private Collection<? extends GrantedAuthority> getPermissions(Users users) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
         users.getPermissions().forEach(p -> authorities.add(new SimpleGrantedAuthority(p.getDescription().toUpperCase())));
 
         return authorities;
     }
+    */
 }
